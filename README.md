@@ -16,6 +16,6 @@
 ### 4. 导入说明
   - Eclipse导入maven项目
   - MySQL中执行[school_safe2.sql](https://github.com/Aizhuxueliang/school_safe_bbs/blob/master/description_%20document/school_safe2.sql)
-  - 修改[config-jdbc.properties](https://github.com/Aizhuxueliang/school_safe_bbs/blob/master/school_safe2/src/main/resources/config-jdbc.properties)]为自己的数据库
+  - 修改[config-jdbc.properties](https://github.com/Aizhuxueliang/school_safe_bbs/blob/master/school_safe2/src/main/resources/config-jdbc.properties)为自己的数据库
   
 
