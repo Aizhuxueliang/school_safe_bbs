@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.BaoMapper" >
+  <resultMap id="BaseResultMap" type="com.java.model.Bao" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="admin_ID" property="adminId" jdbcType="INTEGER" />
+    <result column="InTime" property="intime" jdbcType="TIMESTAMP" />
+    <result column="starttime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.java.model.Bao" extends="BaseResultMap" >
+    <result column="Content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+
+  <sql id="get_where" >
+    <where>
+      <if test="adminId!=null">
+	        	AND Admin_ID=#{adminId,jdbcType=INTEGER}  
+      </if>
+      <if test="grade!=null">
+	        	AND grade=#{grade,jdbcType=VARCHAR}  
+      </if>
+      <if test="starttime!=null and endtime==null">
+       	<![CDATA[ 
+       		and TIMESTAMPDIFF(day,intime,#{starttime,jdbcType=TIMESTAMP})<=0
+       	 ]]>
+       </if>
+       <if test="starttime==null and endtime!=null">
+       	<![CDATA[ 
+       		and timestampdiff(day,intime,#{endtime,jdbcType=TIMESTAMP})>=0
+       	 ]]>
+       </if>
+       <if test="starttime!=null and endtime!=null">
+       	<![CDATA[ 
+       		and (intime between #{starttime,jdbcType=TIMESTAMP} and #{endtime,jdbcType=TIMESTAMP})
+       	 ]]>
+       </if>
+    </where>
+  </sql>
+  <select id="GetByID" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select * 
+    from Bao
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="Get" resultMap="ResultMapWithBLOBs" parameterType="com.java.model.Bao">
+    select * 
+    from Bao
+    <include refid="get_where" />
+    <if test="page!=null">
+    order by #{page.order,jdbcType=VARCHAR}
+    LIMIT #{page.sum,jdbcType=INTEGER}, #{page.pagesize,jdbcType=INTEGER}
+    </if>
+    </select>
+    <select id="GetCount"  parameterType="com.java.model.Bao" resultType="java.lang.Integer">
+    select count(*) 
+    from Bao
+    <include refid="get_where" />
+  </select>
+  <delete id="Del" parameterType="java.lang.Integer" >
+    delete from Bao
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="Add" parameterType="com.java.model.Bao" >
+    insert into Bao 
+    values (NULL, #{title,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR},
+     
+      #{adminId,jdbcType=INTEGER},#{intime,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <update id="Edit" parameterType="com.java.model.Bao" >
+    update Bao
+    set grade = #{grade,jdbcType=VARCHAR},
+     title = #{title,jdbcType=VARCHAR},
+      intime = #{intime,jdbcType=TIMESTAMP},
+      Content = #{content,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

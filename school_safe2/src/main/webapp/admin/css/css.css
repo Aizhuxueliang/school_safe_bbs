@@ -1,0 +1,147 @@
+﻿body {
+	font-size: 16px;
+	padding: 0px;
+	margin: 0px
+}
+
+#main {
+	width: 100%;
+	margin: 0px auto;
+	padding: 10px;
+}
+
+.top_name{
+	font-size: 40px;
+	height: 80px;
+	width: 100%;
+	color: #fff;
+	line-height: 70px;
+	padding: 5px;
+	background-color: #1E9FFF;
+}
+
+#top b {
+	position: absolute;
+	top: 20px;
+	left: 50px;
+	font-size: 40px;
+	color: White
+}
+
+#topline {
+	width: 100%;
+	height: 30px;
+	background: url(../images/topline.jpg);
+	margin: 0px auto
+}
+
+#topline span {
+	color: #808080;
+	display: block;
+	padding-left: 30px;
+	padding-top: 8px;
+	font-family: 宋体;
+	letter-spacing: 2px
+}
+
+#menuul {
+	font-size: 16px;
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+	position: absolute;
+	right: 20px;
+	top: 63px
+}
+
+#menuul li {
+	float: left;
+	width: 82px;
+	height: 31px;
+	background: url(../images/tab.jpg);
+	text-align: center
+}
+
+#menuul li a {
+	color: black;
+	text-decoration: none;
+	display: block;
+	padding-top: 10px
+}
+
+a {
+	color: #000000;
+	text-decoration: none
+}
+
+#btmbg {
+	width: 100%;
+	height: 31px;
+	margin: 0px auto;
+	background: url(../images/btmbg.jpg);
+	text-align: center;
+	color: white
+}
+
+#btmbg span {
+	padding-top: 10px;
+	display: block
+}
+
+/*添加样式*/
+#addtable {
+	width: 90%;
+	margin: 10px auto;
+	border: solid 1px #CCCCCC;
+	border-collapse: collapse
+}
+
+#addtable td {
+	font-size: 16px;
+	height: 30px;
+	border: solid 1px #CCCCCC;
+	border-collapse: collapse;
+	vertical-align: middle
+}
+
+.left {
+	width: 100px;
+	text-align: center
+}
+
+.right {
+	text-align: left
+}
+
+/*列表样式*/
+#sqltable {
+	width: 95%;
+	margin: 10px auto;
+	border: solid 1px #CCCCCC;
+	border-collapse: collapse
+}
+
+#sqltable td {
+	font-size: 16px;
+	padding: 2px;
+	height: 30px;
+	vertical-align: middle;
+	border: solid 1px #CCCCCC;
+	border-collapse: collapse;
+}
+
+.title td {
+	text-align: center;
+	background: url(../images/titlebg.jpg);
+	height: 26px;
+	border: solid 1px #CCCCCC;
+	border-collapse: collapse;
+}
+
+.rows td {
+	
+}
+
+.rows:hover {
+	background: #EAF4FD
+}

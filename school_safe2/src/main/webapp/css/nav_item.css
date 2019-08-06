@@ -1,0 +1,323 @@
+/* s-初始化公共样式 */
+
+body, html {
+    font-size: 12px;
+    font-family: 'Microsoft YaHei';
+    margin: 0;
+    padding: 0;
+}
+ul, ol {
+    padding: 0;
+    margin: 0;
+}
+li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+a {
+    background: transparent;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    color: #666666;
+}
+h1, h2, h3, h4, h5, h6, dt, dd, dl {
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+em, i {
+    font-style: normal;
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.clearfix {
+    display: block;
+}
+.clearfix:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/* e-初始化公共样式 */
+
+
+/* s-nav */
+
+.nav {
+    width: 100%;
+    height: 50px;
+    margin: 0 auto;
+}
+.nav_item {
+    float: left;
+    position: relative;
+}
+.nav_item>a {
+    display: block;
+    padding: 0 15px;
+    line-height: 50px;
+    font-size: 18px;
+    color: #fff;
+    -webkit-transition: all .4s;
+    transition: all .4s;
+}
+
+.menu_open {
+    display: none;
+}
+
+@media screen and (min-width:1001px) {
+    .nav_item.active>a {
+        color: #009688;
+    }
+    .nav_item:hover>a {
+        color: #009688;
+    }
+}
+
+.nav_item_open {
+    min-width: 110px;
+    height: auto;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 10;
+    box-shadow: 0 4px 15px 0 rgba(0, 12, 49, 0.5);
+    background: #fff;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translateY(34px);
+    transform: translateY(34px);
+    -webkit-transition: all .4s;
+    transition: all .4s;
+    overflow: hidden;
+}
+.nav_item:hover .nav_item_open {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+}
+.subopen {
+    display: none;
+}
+.nav_item2 {
+    width: 100%;
+    line-height: 40px;
+}
+.nav_item2 a {
+    display: block;
+    padding: 0 20px;
+    font-size: 14px;
+    white-space: nowrap;
+    text-align: left;
+}
+.nav_item2:hover a {
+    background: #00a2e7;
+    color: #fff;
+}
+.hcover {
+    display: none;
+}
+
+@media screen and (max-width:1279px) {
+    .nav_item>a {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width:1023px) {
+    .nav_item>a {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    .menu_open {
+        display: block;
+        float: right;
+        width: 24px;
+        height: 20px;
+        margin: 10px 0px;
+    }
+    .menu_open i {
+        height: 2px;
+        width: 100%;
+        background: #000;
+        display: block;
+        margin-bottom: 7px;
+    }
+    .nav {
+        width: 50%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: -50%;
+        z-index: 100;
+        overflow: hidden;
+        background: #333;
+        color: rgba(255, 255, 255, .6);
+    }
+    .hcover {
+        display: block;
+        width: 50%;
+        height: 100%;
+        background: rgba(0, 0, 0, .6);
+        position: fixed;
+        right: -50%;
+        top: 0;
+        z-index: 101;
+    }
+    .nav_ul {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding-top: 20px;
+        text-align: left;
+    }
+    .nav_item {
+        float: none;
+        margin: 0;
+        width: 100%;
+    }
+    .nav_item:after {
+        content: '';
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid rgba(0, 0, 0, .15);
+        margin-left: 20px;
+    }
+    .nav_item>a {
+        display: block;
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.8;
+        color: inherit;
+        padding: 10px 10px 10px 20px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin-right: 40px;
+    }
+    .nav_item i {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 100%;
+    }
+    .nav_item i:before {
+        content: '';
+        display: block;
+        height: 100%;
+        border-left: 1px solid rgba(0, 0, 0, .15);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .nav_item i:after {
+        content: '';
+        display: block;
+        width: 7px;
+        height: 7px;
+        margin-bottom: -5px;
+        border: 2px solid rgba(255, 255, 255, .3);
+        border-top: 0;
+        border-left: 0;
+        position: absolute;
+        bottom: 50%;
+        right: 18px;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+    .nav_item_open {
+        width: 50%;
+        height: 100%;
+        margin: 0;
+        box-shadow: none;
+        background: #333;
+        border-radius: 0;
+        opacity: 1;
+        visibility: visible;
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        position: fixed;
+        left: -50%;
+        top: 0;
+    }
+    .subopen {
+        display: block;
+    }
+    .subopen a {
+        display: block;
+        overflow: hidden;
+        margin: 0;
+        padding: 30px 10px 10px 20px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 14px;
+        color: rgba(255, 255, 255, .3);
+        background: rgba(0, 0, 0, .1);
+        text-indent: 20px;
+        position: relative;
+    }
+    .subopen a:before {
+        content: '';
+        display: block;
+        width: 7px;
+        height: 7px;
+        position: absolute;
+        bottom: 50%;
+        left: 22px;
+        margin-bottom: -15px;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        border: 2px solid rgba(255, 255, 255, .3);
+        border-right: 0;
+        border-bottom: 0;
+    }
+    .nav_item2 {
+        position: relative;
+    }
+    .nav_item2 a {
+        display: block;
+        overflow: hidden;
+        margin: 0;
+        line-height: 1.8;
+        padding: 10px 10px 10px 20px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: inherit;
+    }
+    .nav_item2:after {
+        content: '';
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: block;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom: 1px solid rgba(0, 0, 0, .15);
+        margin-left: 20px;
+    }
+}
+
+/* e-nav */
+

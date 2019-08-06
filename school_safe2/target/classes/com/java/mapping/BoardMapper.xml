@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.BoardMapper" >
+  <resultMap id="BaseResultMap" type="com.java.model.Board" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="Client_ID" property="clientId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="InTime" property="intime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.java.model.Board" extends="BaseResultMap" >
+    <result column="Content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="answer" property="answer" jdbcType="LONGVARCHAR" />
+  </resultMap>
+
+  <sql id="get_where" >
+    <where>
+      <if test="clientId!=null">
+	        	AND Client_ID=#{clientId,jdbcType=INTEGER}  
+      </if>
+     
+    </where>
+  </sql>
+  <select id="GetByID" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select * 
+    from Board
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="Get" resultMap="ResultMapWithBLOBs" parameterType="com.java.model.Board">
+    select * 
+    from Board
+    <include refid="get_where" />
+    <if test="page!=null">
+    order by #{page.order,jdbcType=VARCHAR}
+    LIMIT #{page.sum,jdbcType=INTEGER}, #{page.pagesize,jdbcType=INTEGER}
+    </if>
+    </select>
+    <select id="GetCount"  parameterType="com.java.model.Board" resultType="java.lang.Integer">
+    select count(*) 
+    from Board
+    <include refid="get_where" />
+  </select>
+  <delete id="Del" parameterType="java.lang.Integer" >
+    delete from Board
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="Add" parameterType="com.java.model.Board" >
+    insert into Board 
+    values (NULL, #{clientId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR},now(),'')
+  </insert>
+  
+  
+</mapper>

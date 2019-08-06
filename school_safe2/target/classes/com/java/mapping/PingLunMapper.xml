@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.PingLunMapper" >
+  <resultMap id="BaseResultMap" type="com.java.model.PingLun" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="News_ID" property="newsId" jdbcType="INTEGER" />
+    <result column="Client_ID" property="clientId" jdbcType="INTEGER" />
+    <result column="Title" property="title" jdbcType="VARCHAR" />
+    <result column="Intime" property="intime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.java.model.PingLun" extends="BaseResultMap" >
+    <result column="Content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="get_where" >
+    <where>
+    	<if test="title!=null">
+	        	AND title like CONCAT('%',#{title,jdbcType=VARCHAR},'%')   
+      </if>
+      <if test="clientId!=null">
+	        	AND Client_ID=#{clientId,jdbcType=INTEGER}  
+      </if>
+      <if test="newsId!=null">
+	        	AND News_ID=#{newsId,jdbcType=INTEGER}  
+      </if>
+    </where>
+  </sql>
+  <select id="GetByID" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select * from pinglun
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="Get" resultMap="ResultMapWithBLOBs" parameterType="com.java.model.PingLun">
+    select * 
+    from pinglun
+    <include refid="get_where" />
+    <if test="page!=null">
+    order by #{page.order,jdbcType=VARCHAR}
+    LIMIT #{page.sum,jdbcType=INTEGER}, #{page.pagesize,jdbcType=INTEGER}
+    </if>
+    </select>
+    <select id="GetCount"  parameterType="com.java.model.PingLun" resultType="java.lang.Integer">
+    select count(*) 
+    from pinglun
+    <include refid="get_where" />
+  </select>
+  <delete id="Del" parameterType="java.lang.Integer" >
+    delete from pinglun
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="Add" parameterType="com.java.model.PingLun" >
+    insert into pinglun values (NULL, #{newsId,jdbcType=INTEGER}, #{clientId,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}, now()
+      )
+  </insert>
+  
+  <update id="Edit" parameterType="com.java.model.PingLun" >
+    update pinglun
+    set News_ID = #{newsId,jdbcType=INTEGER},
+      Client_ID = #{clientId,jdbcType=INTEGER},
+      Title = #{title,jdbcType=VARCHAR},
+      Intime = #{intime,jdbcType=TIMESTAMP},
+      Content = #{content,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.java.model.PingLun" >
+    update pinglun
+    set News_ID = #{newsId,jdbcType=INTEGER},
+      Client_ID = #{clientId,jdbcType=INTEGER},
+      Title = #{title,jdbcType=VARCHAR},
+      Intime = #{intime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
